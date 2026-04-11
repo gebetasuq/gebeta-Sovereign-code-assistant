@@ -1,0 +1,81 @@
+version: '3.8'
+
+networks:
+  gebeta-net:
+    driver: bridge
+
+volumes:
+  ollama_data:
+  postgres_data:
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: gebeta-ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - gebeta-net
+    mem_limit: 8g
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: >
+      sh -c "ollama serve & sleep 5 && ollama pull qwen2.5-coder:7b && wait"
+
+  inference-proxy:
+    build: ./templates/fastapi-service-template
+    container_name: gebeta-inference
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    ports:
+      - "8000:8000"
+    networks:
+      - gebeta-net
+    depends_on:
+      ollama:
+        condition: service_healthy
+    mem_limit: 1g
+    restart: unless-stopped
+
+  api:
+    build: ./templates/springboot-service-template
+    container_name: gebeta-api
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/gebeta
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - INFERENCE_PROXY_URL=http://inference-proxy:8000
+      - JAVA_OPTS=-XX:MaxRAMPercentage=75.0
+    ports:
+      - "8080:8080"
+    networks:
+      - gebeta-net
+    depends_on:
+      db:
+        condition: service_started
+      inference-proxy:
+        condition: service_started
+    mem_limit: 2g
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: gebeta-db
+    environment:
+      - POSTGRES_DB=gebeta
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - gebeta-net
+    mem_limit: 1g
+    restart: unless-stopped
