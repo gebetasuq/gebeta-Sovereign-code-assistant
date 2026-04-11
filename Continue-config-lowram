@@ -1,0 +1,40 @@
+name: Gebeta Sovereign - Low RAM Mode
+version: 0.1.0
+schema: v1
+
+models:
+  - name: Phi3 Mini (Agent)
+    provider: ollama
+    model: phi3:mini
+    apiBase: http://localhost:11434
+    roles:
+      - chat
+      - edit
+    capabilities:
+      - tool_use
+
+  - name: Qwen Coder 1.5B (Autocomplete)
+    provider: ollama
+    model: qwen2.5-coder:1.5b
+    apiBase: http://localhost:11434
+    roles:
+      - autocomplete
+
+context:
+  - directory: .
+    exclude:
+      - node_modules
+      - .git
+      - __pycache__
+      - .env
+      - "*.secret"
+      - "*.key"
+      - dist/
+      - build/
+      - "*.log"
+
+slash_commands:
+  - name: gebeta-lite
+    description: "Ask Gebeta Sovereign Assistant (Low RAM Mode)"
+    run: /chat
+
