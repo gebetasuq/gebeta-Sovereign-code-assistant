@@ -1,42 +1,58 @@
 Gebeta Sovereign Code Assistant
 
+https://img.shields.io/badge/license-MIT-blue
+https://img.shields.io/badge/version-1.0.0-brightgreen
+https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey
+https://img.shields.io/badge/status-production--ready-success
+
+AI accelerates engineering without removing human control.
+
 ---
 
- What is Gebeta Sovereign Code Assistant?
+What is Gebeta Sovereign Code Assistant?
 
 Gebeta Sovereign Code Assistant is a local-first AI engineering environment that enables developers and teams to code, review, refactor, test, and execute agent workflows without exposing proprietary source code to third-party AI providers.
 
-> "AI accelerates engineering without removing human control."
-
-Core Philosophy
-
-- Local First — Models run locally, code stays local
-- Human Approval — Sensitive actions require explicit review
-- Controlled Agents — AI operates inside policy boundaries
-- Auditability — Engineering actions are reviewable
-- Team Standardization — Repeatable, governed AI workflows
+It combines local LLM inference (Ollama), IDE-native agent workflows (Continue), and a control layer of policies, approvals, and guardrails into a practical system for sovereign software development.
 
 ---
 
- Features
+Core Philosophy
 
-Feature	Description	
- Local Inference	Run coding models locally using Ollama — no cloud dependency	
- Agent-Ready	Multi-step coding workflows with Continue	
- Human Approval	Explicit review before sensitive actions	
- Project Guardrails	Repo-specific rules and coding standards	
- Auditability	Local history, approvals, and action logs	
-Team Standardization	Shared configs and deployment patterns	
- Air-Gapped Option	Zero external connectivity required	
- Two Deployment Modes	Maximum Privacy or Productivity Mode	
+· Local First — Models run locally, code stays local
+· Human Approval — Sensitive actions require explicit review
+· Controlled Agents — AI operates inside policy boundaries
+· Auditability — Engineering actions are reviewable
+· Team Standardization — Repeatable, governed AI workflows
+
+---
+
+Features
+
+Feature Description
+ Local Inference Run coding models locally using Ollama — no cloud dependency
+ Agent-Ready Multi-step coding workflows with Continue
+ Human Approval Explicit review before sensitive actions
+ Project Guardrails Repo-specific rules and coding standards
+ Auditability Local history, approvals, and action logs
+ Team Standardization Shared configs and deployment patterns
+ Air-Gapped Option Zero external connectivity required
+ Two Deployment Modes Maximum Privacy or Productivity Mode
 
 ---
 
 Quick Start
 
-Get up and running in 10 minutes:
+Get up and running in 10 minutes.
 
-1. Install Ollama
+1. Clone the Repository
+
+```bash
+git clone https://github.com/gebeta/gebeta-sovereign-code-assistant
+cd gebeta-sovereign-code-assistant
+```
+
+2. Install Ollama
 
 ```bash
 # macOS/Linux
@@ -45,58 +61,59 @@ curl -fsSL https://ollama.com/install.sh | sh
 # Windows: Download from https://ollama.com
 ```
 
-2. Start Ollama & Pull Models
+3. Start Ollama & Pull Models
 
 ```bash
-# Start the Ollama server
+# Start the Ollama server (keep this terminal open)
 ollama serve
 
-# Pull recommended models
+# In a new terminal, pull recommended models
 ollama pull qwen2.5-coder:7b
 ollama pull codellama:7b
 ```
 
-3. Install VS Code & Continue
+4. Install VS Code & Continue
 
-1. Install [Visual Studio Code](https://code.visualstudio.com/)
-2. Install the [Continue extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+· Install Visual Studio Code
+· Install the Continue extension
 
-4. Configure Continue
-
-Copy the configuration file:
+5. Configure Continue
 
 ```bash
 # macOS/Linux
+mkdir -p ~/.continue
 cp configs/continue-config.yaml ~/.continue/config.yaml
 
 # Windows
+mkdir %USERPROFILE%\.continue
 copy configs\continue-config.yaml %USERPROFILE%\.continue\config.yaml
 ```
 
-5. Start Coding
+6. Start Coding
 
-Open VS Code, open the Continue sidebar, and start coding with AI assistance!
+Open VS Code, open the Continue sidebar (Cmd+Shift+P → "Continue: Open Chat"), and start coding with AI assistance!
 
 ---
 
- Installation
+Installation
 
 Hardware Prerequisites
 
-Component	Minimum	Recommended	
-RAM	8 GB	16 GB+	
-Storage	10 GB free	20 GB SSD	
-GPU	None	4 GB+ VRAM (NVIDIA)	
-OS	Windows 10 / macOS 11 / Linux	Latest stable	
+Component Minimum Recommended
+RAM 8 GB 16 GB+
+Storage 10 GB free 20 GB SSD
+GPU None 4 GB+ VRAM (NVIDIA)
+OS Windows 10 / macOS 11 / Linux Latest stable
 
 Step-by-Step Setup
 
 1. Install Ollama
 
 Download and install Ollama for your operating system:
-- [Ollama for macOS](https://ollama.com/download/mac)
-- [Ollama for Windows](https://ollama.com/download/windows)
-- [Ollama for Linux](https://ollama.com/download/linux)
+
+· Ollama for macOS
+· Ollama for Windows
+· Ollama for Linux
 
 Verify installation:
 
@@ -116,20 +133,27 @@ ollama pull llama3.1:8b           # General assistant
 ollama pull phi3:mini             # ~2.5 GB RAM
 ```
 
-3. Install VS Code
+3. Install VS Code & Continue
 
-Download and install [Visual Studio Code](https://code.visualstudio.com/)
+· Download and install Visual Studio Code
+· Open VS Code
+· Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
+· Search for "Continue"
+· Click Install
 
-4. Install Continue Extension
+4. (Optional) Install Warp for Productivity Mode
 
-1. Open VS Code
-2. Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
-3. Search for "Continue"
-4. Click Install
+```bash
+# macOS
+brew install --cask warp
 
-5. (Optional) Install Warp for Productivity Mode
+# Windows
+winget install Warp.Warp
 
-Download [Warp](https://www.warp.dev/) and enable Zero Data Retention.
+# Linux: Download from https://warp.dev
+```
+
+Then enable Zero Data Retention in Warp settings.
 
 ---
 
@@ -139,11 +163,11 @@ Continue Config Files
 
 We provide four pre-configured setups:
 
-Config	Use Case	File	
-Standard	General use	`configs/continue-config.yaml`	
-Safe Mode	Maximum privacy	`configs/continue-config-safe.yaml`	
-Team	Team deployment	`configs/continue-config-team.yaml`	
-Low RAM	Resource-constrained	`configs/continue-config-lowram.yaml`	
+Config Use Case File
+Standard General use configs/continue-config.yaml
+Safe Mode Maximum privacy configs/continue-config-safe.yaml
+Team Team deployment configs/continue-config-team.yaml
+Low RAM Resource-constrained configs/continue-config-lowram.yaml
 
 Copy Configuration
 
@@ -176,28 +200,29 @@ cat configs/safe-command-policy.md
 
 ---
 
- Deployment Modes
+Deployment Modes
 
 Mode A: Maximum Privacy (Recommended for Sensitive Code)
 
 Best for: Fintech, proprietary IP, compliance-sensitive environments
 
 Stack:
-- Ollama (local inference)
-- Continue (IDE agent)
-- VS Code (telemetry minimized)
-- Local terminal only
+
+· Ollama (local inference)
+· Continue (IDE agent)
+· VS Code (telemetry minimized)
+· Local terminal only
 
 Features:
-- Zero cloud dependence after setup
--  No account required
--  Best trust posture
--  Optional air-gapped operation
+
+· ✅ Zero cloud dependence after setup
+· ✅ No account required
+· ✅ Best trust posture
+· ✅ Optional air-gapped operation
 
 Setup:
 
 ```bash
-# Use the safe mode config
 cp configs/continue-config-safe.yaml ~/.continue/config.yaml
 ```
 
@@ -206,21 +231,22 @@ Mode B: Productivity Mode
 Best for: Multi-agent workflows, faster execution
 
 Stack:
-- Ollama + Continue
-- Warp terminal (with ZDR enabled)
-- Hardened internet-enabled environment
+
+· Ollama + Continue
+· Warp terminal (with ZDR enabled)
+· Hardened internet-enabled environment
 
 Features:
--  Better orchestration
--  Stronger terminal UX
--  Parallel agent workflows
--  Requires Warp account
+
+· ✅ Better orchestration
+· ✅ Stronger terminal UX
+· ✅ Parallel agent workflows
+· ⚠️ Requires Warp account
 
 Setup:
 
 ```bash
-# Install Warp and enable Zero Data Retention
-# Use the standard config
+# Install Warp and enable Zero Data Retention (see above)
 cp configs/continue-config.yaml ~/.continue/config.yaml
 ```
 
@@ -228,19 +254,21 @@ cp configs/continue-config.yaml ~/.continue/config.yaml
 
 Documentation
 
-Document	Description	
-[QUICKSTART.md](QUICKSTART.md)	Get started in 10 minutes	
-[SECURITY_AND_TRUST.md](SECURITY_AND_TRUST.md)	Threat model and trust boundaries	
-[TEAM_DEPLOYMENT.md](TEAM_DEPLOYMENT.md)	Scale to your team	
-[USE_CASES.md](USE_CASES.md)	Real-world examples	
-[WHY_GEBETA.md](WHY_GEBETA.md)	Founder vision and philosophy	
-[ROADMAP.md](ROADMAP.md)	Product roadmap	
+Document Description
+QUICKSTART.md Get started in 10 minutes
+SECURITY_AND_TRUST.md Threat model and trust boundaries
+TEAM_DEPLOYMENT.md Scale to your team
+USE_CASES.md Real-world examples
+WHY_GEBETA.md Founder vision and philosophy
+ROADMAP.md Product roadmap
+CONTRIBUTING.md How to contribute
 
 ---
 
- Use Cases
+Use Cases
 
 1. Secure Backend API Build
+
 Create a FastAPI authentication microservice locally with no cloud AI access.
 
 ```
@@ -249,84 +277,82 @@ JWT tokens, and PostgreSQL integration
 ```
 
 2. Private Fintech Refactor
+
 Refactor payment validation modules without exposing source code.
 
 3. Spring Boot Microservice Setup
+
 Generate service structure, OpenAPI specs, tests, and Docker configs.
 
 4. Team Code Review Assistant
+
 Use local AI to review PR changes before human review.
 
 ---
 
- Security & Trust
+Security & Trust
 
 What This Protects Against
 
-Risk	Mitigation	
-Third-party AI training on code	Local models only	
-Cloud prompt retention	No data sent to hosted providers	
-Accidental source leakage	Air-gappable configuration	
-Over-permissioned agents	Manual approval required	
-Silent execution	Agent asks before running commands	
+Risk Mitigation
+Third-party AI training on code Local models only
+Cloud prompt retention No data sent to hosted providers
+Accidental source leakage Air-gappable configuration
+Over-permissioned agents Manual approval required
+Silent execution Agent asks before running commands
 
 What This Does NOT Protect Against
 
-- Malicious local dependencies (npm, pip, etc.)
-- Insecure commands approved by the user
-- Compromised OS / endpoint malware
-- Package manager supply-chain attacks
-- Git remote misconfiguration
-- Insider threats
+· Malicious local dependencies (npm, pip, etc.)
+· Insecure commands approved by the user
+· Compromised OS / endpoint malware
+· Package manager supply-chain attacks
+· Git remote misconfiguration
+· Insider threats
 
-> Important: This is a control-first system, not a convenience-first system. Human review is always required.
+Important: This is a control-first system, not a convenience-first system. Human review is always required.
 
 ---
 
- Team Deployment
+Team Deployment
 
 Standardization Pattern
 
 1. Distribute shared config:
-   
-```bash
+   ```bash
    cp configs/continue-config-team.yaml ~/.continue/config.yaml
    ```
-
 2. Enforce common rules:
-   
-```bash
+   ```bash
    mkdir -p .continue/rules
    cp configs/gebeta-rules.md .continue/rules/
    ```
-
 3. Approve model list: Define which models are allowed
-
 4. Define safe command policies: Per-repo approval requirements
-
 5. Preserve local logs: Enable audit trails where appropriate
 
 Team Benefits
 
--  Consistent AI behavior across developers
--  Reduced trust fragmentation
--  Easier onboarding
--  Repeatable security posture
--  More predictable outputs
+· ✅ Consistent AI behavior across developers
+· ✅ Reduced trust fragmentation
+· ✅ Easier onboarding
+· ✅ Repeatable security posture
+· ✅ More predictable outputs
 
 ---
 
- Model Recommendations
+Model Recommendations
 
-Use Case	Model	RAM	Command	
-Fast autocomplete	qwen2.5-coder:1.5b	2 GB	`ollama pull qwen2.5-coder:1.5b`	
-Balanced coding	qwen2.5-coder:7b	6 GB	`ollama pull qwen2.5-coder:7b`	
-General assistant	llama3.1:8b	8 GB	`ollama pull llama3.1:8b`	
-Low RAM fallback	phi3:mini	2.5 GB	`ollama pull phi3:mini`	
+Use Case Model RAM Command
+Fast autocomplete qwen2.5-coder:1.5b ~2 GB ollama pull qwen2.5-coder:1.5b
+Balanced coding agent qwen2.5-coder:7b ~6 GB ollama pull qwen2.5-coder:7b
+General assistant + docs llama3.1:8b ~8 GB ollama pull llama3.1:8b
+Low RAM fallback phi3:mini ~2.5 GB ollama pull phi3:mini
+Strong local reasoning deepseek-coder:6.7b ~7 GB ollama pull deepseek-coder:6.7b
 
 ---
 
- Repository Structure
+Repository Structure
 
 ```
 gebeta-sovereign-code-assistant/
@@ -339,13 +365,14 @@ gebeta-sovereign-code-assistant/
 ├── USE_CASES.md             # Example use cases
 ├── WHY_GEBETA.md            # Founder vision
 ├── ROADMAP.md               # Product roadmap
+├── CONTRIBUTING.md          # Contribution guidelines
 │
 ├── configs/                 # Ready-to-use configurations
 │   ├── continue-config.yaml
 │   ├── continue-config-safe.yaml
 │   ├── continue-config-team.yaml
 │   ├── continue-config-lowram.yaml
-│   ├── gbeta-rules.md
+│   ├── gebeta-rules.md
 │   └── safe-command-policy.md
 │
 ├── templates/               # Starter templates
@@ -363,65 +390,78 @@ gebeta-sovereign-code-assistant/
 
 ---
 
- Known Limitations
+Known Limitations
 
-- Local models may be slower than cloud models
-- Agent tool use varies by model and hardware
-- Large repos may require context tuning
-- Code quality depends on model and review
-- Some actions need repeated approval
-- Autocomplete may be below premium tools
+· Local models may be slower than cloud models
+· Agent tool use varies by model and hardware
+· Large repositories may require context tuning
+· Code quality depends on model choice and human review
+· Some actions need repeated approval
+· Autocomplete quality may be below premium hosted tools
 
-> Positioning: Gebeta promises controlled AI, not perfect AI. That is a stronger promise.
-
----
-
- Roadmap
-
-Version	Focus	Timeline	
-V1	Foundation — Docs + configs + starter kit	Complete	
-V2	Platform — Web portal + onboarding	Q3 2025	
-V3	Enterprise — Team control plane + governance	Q4 2025	
+Positioning: Gebeta promises controlled AI, not perfect AI. That is a stronger promise.
 
 ---
 
- Contributing
+Roadmap
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Version Focus Timeline
+V1 Foundation — Documentation, configs, starter kit ✅ Now
+V2 Platform — Web portal, onboarding, analytics Q3 2026
+V3 Enterprise — Team control plane, governance, audit dashboard Q1 2027
 
-Ways to Contribute
-
--  Report bugs
--  Suggest features
--  Improve documentation
--  Submit code improvements
--  Share with your network
+Roadmap subject to change based on community feedback and contributor availability.
 
 ---
 
- License
+⭐ Support the Project
 
-This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+If Gebeta Sovereign Code Assistant helps you build with control and privacy, please star this repository and share it with your team.
 
 ---
 
- Founder
+Contributing
+
+We welcome contributions! Please see CONTRIBUTING.md for guidelines.
+
+Ways to contribute:
+
+·  Report bugs
+·  Suggest features
+·  Improve documentation
+·  Submit code improvements
+·  Share with your network
+
+---
+
+License
+
+This project is licensed under the MIT License — see LICENSE for details.
+
+You are free to use, modify, and distribute this software with attribution.
+
+---
+
+Founder
 
 Mohammed B. Kemal
-
 Founder & System Architect, Gebeta Universe
 
--  Website: [https://gebetauae.com](https://gebetauae.com)
-- -  LinkedIn: [linkedin.com/in/mohammedbkemal](https://linkedin.com/in/mohammedbkemal)
--  Twitter: [@gebetasovereign](https://twitter.com/gebetasovereign)
+· 🌐 Website: https://gebetauae.com
+· 🔗 LinkedIn: linkedin.com/in/mohammedbkemal
+· 🐦 Twitter: @gebetasovereign
 
 ---
 
-🙏 Acknowledgments
+Acknowledgments
 
-- [Ollama](https://ollama.com) — Local LLM runtime
-- [Continue](https://continue.dev) — IDE AI assistant
-- [VS Code](https://code.visualstudio.com) — Code editor
-- [Warp](https://www.warp.dev) — Modern terminal (optional)
+· Ollama — Local LLM runtime
+· Continue — IDE AI assistant
+· VS Code — Code editor
+· Warp — Modern terminal (optional)
 
 ---
+
+Built with ❤️ for sovereign engineering.
+
+Document version: 1.0.0 | Last updated: April 2026
