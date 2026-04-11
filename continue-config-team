@@ -1,0 +1,51 @@
+name: Gebeta Sovereign - Team Edition
+version: 0.1.0
+schema: v1
+
+models:
+  - name: Qwen Coder 7B (Team Agent)
+    provider: ollama
+    model: qwen2.5-coder:7b
+    apiBase: http://localhost:11434
+    roles:
+      - chat
+      - edit
+    capabilities:
+      - tool_use
+
+  - name: CodeLlama 7B (Team Fallback)
+    provider: ollama
+    model: codellama:7b
+    apiBase: http://localhost:11434
+    roles:
+      - chat
+      - edit
+    capabilities:
+      - tool_use
+
+  - name: CodeLlama Auto (Team)
+    provider: ollama
+    model: codellama:7b
+    apiBase: http://localhost:11434
+    roles:
+      - autocomplete
+
+rules:
+  - path: .continue/rules/gebeta-rules.md
+
+context:
+  - directory: .
+    exclude:
+      - node_modules
+      - .git
+      - __pycache__
+      - .env
+      - "*.secret"
+      - "*.key"
+      - dist/
+      - build/
+
+slash_commands:
+  - name: gebeta-team
+    description: "Ask Gebeta Sovereign Assistant (Team Mode)"
+    run: /chat
