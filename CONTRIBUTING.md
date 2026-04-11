@@ -80,6 +80,38 @@ When suggesting a feature, please include:
 · Alternative approaches considered
 · Use case examples
 
+Secret Scanning (Pre-commit Hook)
+
+To prevent accidental commits of secrets, we recommend installing gitleaks:
+
+```bash
+# Install gitleaks (macOS)
+brew install gitleaks
+
+# Install gitleaks (Linux)
+curl -sSfL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_linux_x64.tar.gz | tar xz
+sudo mv gitleaks /usr/local/bin/
+
+# Run locally before committing
+gitleaks detect --source . --verbose
+```
+
+Add the following pre-commit hook (.git/hooks/pre-commit):
+
+```bash
+#!/bin/sh
+echo "Running gitleaks secret scan..."
+gitleaks detect --source . --verbose --redact
+if [ $? -ne 0 ]; then
+  echo "❌ Gitleaks found secrets. Commit aborted."
+  exit 1
+fi
+```
+
+Make it executable: chmod +x .git/hooks/pre-commit
+
+This ensures no API keys, passwords, or tokens are ever committed to the repository.
+
 Code of Conduct
 
 We are committed to providing a welcoming and harassment-free experience for everyone.
@@ -102,8 +134,8 @@ Questions?
 Open an issue or contact the maintainer:
 
 · Mohammed B. Kemal — Founder & System Architect
-· GitHub: @mohammedbkemal
-. gabetres@gmail.com 
+· GitHub: @gebetasuq
+
 ---
 
 Thank you for helping build sovereign engineering infrastructure!
@@ -111,5 +143,3 @@ Thank you for helping build sovereign engineering infrastructure!
 Last updated: April 2026
 
 ```
-
--
