@@ -48,8 +48,8 @@ services:
     container_name: gebeta-api
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/gebeta
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_USERNAME=${DB_USER:-postgres}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
       - INFERENCE_PROXY_URL=http://inference-proxy:8000
       - JAVA_OPTS=-XX:MaxRAMPercentage=75.0
     ports:
@@ -69,8 +69,8 @@ services:
     container_name: gebeta-db
     environment:
       - POSTGRES_DB=gebeta
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
