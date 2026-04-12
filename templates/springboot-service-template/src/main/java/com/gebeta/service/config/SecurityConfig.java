@@ -1,3 +1,8 @@
+# Delete the broken file
+rm templates/springboot-service-template/src/main/java/com/gebeta/service/config/SecurityConfig.java
+
+# Create the correct file with the content below
+cat > templates/springboot-service-template/src/main/java/com/gebeta/service/config/SecurityConfig.java << 'EOF'
 package com.gebeta.service.config;
 
 import com.gebeta.service.security.JwtAuthenticationFilter;
@@ -46,3 +51,4 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 }
+EOF
