@@ -199,16 +199,16 @@ Outcome
 Informed dependency decision. No automatic installation without approval.
 
 ---
+## Summary
 
-Summary
-
-Use Case Best For Mode
-Secure Backend API Solo founders, startups A or B
-Private Fintech Refactor Compliance teams A only
-Spring Boot Setup Enterprise teams A or B
-Code Review Assistant All teams A or B
-Legacy Documentation Maintenance teams A or B
-Dependency Audit Security teams A (offline) or B
+| Use Case | Best For | Mode |
+|----------|----------|------|
+| Secure Backend API | Solo founders, startups | A or B |
+| Private Fintech Refactor | Compliance teams | A only |
+| Spring Boot Setup | Enterprise teams | A or B |
+| Code Review Assistant | All teams | A or B |
+| Legacy Documentation | Maintenance teams | A or B |
+| Dependency Audit | Security teams | A (offline) or B |
 
 ---
 
