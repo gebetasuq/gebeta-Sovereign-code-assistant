@@ -181,18 +181,19 @@ Authentication endpoints are protected against brute‑force attacks:
 Exceeding the limit returns HTTP 429 with a `Retry-After` header. Rate limiting is implemented in both FastAPI and Spring Boot templates.
 ---
 
-Documentation
+## Documentation
 
-Document Description
-QUICKSTART.md Get started in 10 minutes
-SECURITY_AND_TRUST.md Threat model and trust boundaries
-TEAM_DEPLOYMENT.md Scale to your team
-USE_CASES.md Real-world examples
-WHY_GEBETA.md Founder vision and philosophy
-ROADMAP.md Product roadmap
-CONTRIBUTING.md How to contribute
-TESTING.md Running tests and coverage reports
-PERFORMANCE_TUNING.md Memory limits, JVM tuning, hardware adjustments
+| Document | Description |
+|----------|-------------|
+| [QUICKSTART.md](QUICKSTART.md) | Get started in 10 minutes |
+| [SECURITY_AND_TRUST.md](SECURITY_AND_TRUST.md) | Threat model and trust boundaries |
+| [TEAM_DEPLOYMENT.md](TEAM_DEPLOYMENT.md) | Scale to your team |
+| [USE_CASES.md](USE_CASES.md) | Real-world examples |
+| [WHY_GEBETA.md](WHY_GEBETA.md) | Founder vision and philosophy |
+| [ROADMAP.md](ROADMAP.md) | Product roadmap |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
+| [TESTING.md](TESTING.md) | Running tests and coverage reports |
+| [PERFORMANCE_TUNING.md](PERFORMANCE_TUNING.md) | Memory limits, JVM tuning, hardware adjustments |
 
 ---
 
