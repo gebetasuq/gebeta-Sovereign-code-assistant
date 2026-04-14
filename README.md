@@ -97,27 +97,24 @@ copy configs\continue-config.yaml %USERPROFILE%\.continue\config.yaml
 Open VS Code, open the Continue sidebar (Cmd+Shift+P → "Continue: Open Chat"), and start coding with AI assistance!
 
 ---
+## Deployment Modes
 
-Deployment Modes
+### Mode A: Maximum Privacy (Recommended for Sensitive Code)
 
-Mode A: Maximum Privacy (Recommended for Sensitive Code)
+**Best for:** Fintech, proprietary IP, compliance-sensitive environments
 
-Best for: Fintech, proprietary IP, compliance-sensitive environments
+**Stack:**
+- Ollama (local inference)
+- Continue (IDE agent)
+- VS Code (telemetry minimized)
+- Local terminal only
 
-Stack:
-
-· Ollama (local inference)
-· Continue (IDE agent)
-· VS Code (telemetry minimized)
-· Local terminal only
-
-Setup:
-
+**Setup:**
 ```bash
 cp configs/continue-config-safe.yaml ~/.continue/config.yaml
 ```
+### Mode B:Productivity Mode
 
-Mode B: Productivity Mode
 
 Best for: Multi-agent workflows, faster execution
 
@@ -127,7 +124,7 @@ Stack:
 · Warp terminal (with ZDR enabled)
 · Hardened internet-enabled environment
 
-Setup:
+**Setup:**
 
 ```bash
 # Install Warp (macOS)
@@ -138,90 +135,108 @@ cp configs/continue-config.yaml ~/.continue/config.yaml
 ```
 
 ---
+## Model Recommendations
 
-Model Recommendations
+| Use Case | Model | RAM | Command |
+|----------|-------|-----|---------|
+| Fast autocomplete | `qwen2.5-coder:1.5b` | ~2 GB | `ollama pull qwen2.5-coder:1.5b` |
+| Balanced coding agent | `qwen2.5-coder:7b` | ~6 GB | `ollama pull qwen2.5-coder:7b` |
+| General assistant + docs | `llama3.1:8b` | ~8 GB | `ollama pull llama3.1:8b` |
+| Low RAM fallback | `phi3:mini` | ~2.5 GB | `ollama pull phi3:mini` |
 
-Use Case Model RAM Command
-Fast autocomplete qwen2.5-coder:1.5b ~2 GB ollama pull qwen2.5-coder:1.5b
-Balanced coding agent qwen2.5-coder:7b ~6 GB ollama pull qwen2.5-coder:7b
-General assistant + docs llama3.1:8b ~8 GB ollama pull llama3.1:8b
-Low RAM fallback phi3:mini ~2.5 GB ollama pull phi3:mini
 
 ---
+## Security & Trust
 
-Security & Trust
+### What This Protects Against
 
-What This Protects Against
+| Risk | Mitigation |
+|------|-------------|
+| Third-party AI training on code | Local models only |
+| Cloud prompt retention | No data sent to hosted providers |
+| Accidental source leakage | Air-gappable configuration |
+| Over-permissioned agents | Manual approval required |
+| Silent execution | Agent asks before running commands |
 
-Risk Mitigation
-Third-party AI training on code Local models only
-Cloud prompt retention No data sent to hosted providers
-Accidental source leakage Air-gappable configuration
-Over-permissioned agents Manual approval required
-Silent execution Agent asks before running commands
+### What This Does NOT Protect Against
 
-What This Does NOT Protect Against
+- Malicious local dependencies (npm, pip, etc.)
+- Insecure commands approved by the user
+- Compromised OS / endpoint malware
+- Package manager supply-chain attacks
+- Git remote misconfiguration
+- Insider threats
 
-· Malicious local dependencies (npm, pip, etc.)
-· Insecure commands approved by the user
-· Compromised OS / endpoint malware
-· Package manager supply-chain attacks
-· Git remote misconfiguration
-· Insider threats
+> **Important:** This is a control-first system, not a convenience-first system. Human review is always required.
 
-Important: This is a control-first system, not a convenience-first system. Human review is always required.
-
-Rate Limiting
+### Rate Limiting
 
 Authentication endpoints are protected against brute‑force attacks:
 
-· Login: 10 requests per minute per IP
-· Registration: 5 requests per 5 minutes per IP
+- **Login:** 10 requests per minute per IP
+- **Registration:** 5 requests per 5 minutes per IP
 
-Exceeding the limit returns HTTP 429 with a Retry-After header. Rate limiting is implemented in both FastAPI and Spring Boot templates.
-
----
-
-Documentation
-
-Document Description
-QUICKSTART.md Get started in 10 minutes
-SECURITY_AND_TRUST.md Threat model and trust boundaries
-TEAM_DEPLOYMENT.md Scale to your team
-USE_CASES.md Real-world examples
-WHY_GEBETA.md Founder vision and philosophy
-ROADMAP.md Product roadmap
-CONTRIBUTING.md How to contribute
-TESTING.md Running tests and coverage reports
-PERFORMANCE_TUNING.md Memory limits, JVM tuning, hardware adjustments
+Exceeding the limit returns HTTP 429 with a `Retry-After` header. Rate limiting is implemented in both FastAPI and Spring Boot templates.
 
 ---
+## Documentation
 
-Repository Structure
+| Document | Description |
+|----------|-------------|
+| [QUICKSTART.md](QUICKSTART.md) | Get started in 10 minutes |
+| [SECURITY_AND_TRUST.md](SECURITY_AND_TRUST.md) | Threat model and trust boundaries |
+| [TEAM_DEPLOYMENT.md](TEAM_DEPLOYMENT.md) | Scale to your team |
+| [USE_CASES.md](USE_CASES.md) | Real-world examples |
+| [WHY_GEBETA.md](WHY_GEBETA.md) | Founder vision and philosophy |
+| [ROADMAP.md](ROADMAP.md) | Product roadmap |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
+| [TESTING.md](TESTING.md) | Running tests and coverage reports |
+| [PERFORMANCE_TUNING.md](PERFORMANCE_TUNING.md) | Memory limits, JVM tuning, hardware adjustments |
+
+---
+## 🚀 What Gebeta Can Build
+
+Gebeta Sovereign Code Assistant is already being used to build the **Global AI Civilization Platform (GACP)** – a sovereign, multi‑agent AI operating architecture.
+
+GACP includes:
+- 10 specialised AI agents (Orchestrator, Builder, Guardian, Mitu AI, etc.)
+- 8 architecture layers (from user interface to global federation)
+- Self‑improving learning loops
+- Economic resource management
+- Sovereign and federation layers
+
+**If Gebeta can help build GACP, it can help build your sovereign AI systems too.**
+
+👉 [Read the full story →](BUILT_WITH_GEBETA_SOVEREIGN_CODE_ASSISTANT.md)
+
+---
+## Repository Structure
 
 ```
+
 gebeta-sovereign-code-assistant/
 │
-├── README.md                 # This file
-├── LICENSE                   # MIT License
-├── QUICKSTART.md            # Quick start guide
-├── SECURITY_AND_TRUST.md    # Security documentation
-├── TEAM_DEPLOYMENT.md       # Team setup guide
-├── USE_CASES.md             # Example use cases
-├── WHY_GEBETA.md            # Founder vision
-├── ROADMAP.md               # Product roadmap
-├── CONTRIBUTING.md          # Contribution guidelines
-├── TESTING.md               # Test execution guide
-├── PERFORMANCE_TUNING.md    # Performance optimization
-├── .gitignore               # Git ignore rules
-├── .gitleaks.toml           # Secret scanning configuration
-├── docker-compose.yml       # Full-stack deployment
+├── README.md                           # This file
+├── LICENSE                             # MIT License
+├── QUICKSTART.md                       # Quick start guide
+├── SECURITY_AND_TRUST.md               # Security documentation
+├── TEAM_DEPLOYMENT.md                  # Team setup guide
+├── USE_CASES.md                        # Real-world examples
+├── WHY_GEBETA.md                       # Founder vision
+├── ROADMAP.md                          # Product roadmap
+├── CONTRIBUTING.md                     # Contribution guidelines
+├── TESTING.md                          # Test execution guide
+├── PERFORMANCE_TUNING.md               # Performance optimization
+├── BUILT_WITH_GEBETA_SOVEREIGN_CODE_ASSISTANT.md   # Built With story (GACP)
+├── .gitignore                          # Git ignore rules
+├── .gitleaks.toml                      # Secret scanning configuration
+├── docker-compose.yml                  # Full-stack deployment
 │
 ├── .github/
-│   ├── ISSUE_TEMPLATE/      # Issue templates
-│   └── workflows/           # CI test workflows
+│   ├── ISSUE_TEMPLATE/                 # Issue templates
+│   └── workflows/                      # CI test workflows
 │
-├── configs/                 # Ready-to-use configurations
+├── configs/                            # Ready-to-use configurations
 │   ├── continue-config.yaml
 │   ├── continue-config-safe.yaml
 │   ├── continue-config-team.yaml
@@ -229,88 +244,85 @@ gebeta-sovereign-code-assistant/
 │   ├── gebeta-rules.md
 │   └── safe-command-policy.md
 │
-├── docs/                    # Additional documentation
+├── docs/                               # Additional documentation
 │   ├── architecture.md
 │   └── deployment-modes.md
 │
-├── examples/                # Example workflows
+├── examples/                           # Example workflows
 │   └── example-agent-prompts.md
 │
-└── templates/               # Starter templates
-    ├── fastapi-service-template/
-    ├── react-frontend-template/
-    └── springboot-service-template/
+└── templates/                          # Starter templates
+├── fastapi-service-template/
+├── react-frontend-template/
+└── springboot-service-template/
+
 ```
 
 ---
+## Known Limitations
 
-Known Limitations
+- Local models may be slower than cloud models
+- Agent tool use varies by model and hardware
+- Large repositories may require context tuning
+- Code quality depends on model choice and human review
+- Some actions need repeated approval
+- Autocomplete quality may be below premium hosted tools
 
-· Local models may be slower than cloud models
-· Agent tool use varies by model and hardware
-· Large repositories may require context tuning
-· Code quality depends on model choice and human review
-· Some actions need repeated approval
-· Autocomplete quality may be below premium hosted tools
+> **Positioning:** Gebeta promises **controlled AI**, not perfect AI. That is a stronger promise.
 
-Positioning: Gebeta promises controlled AI, not perfect AI. That is a stronger promise.
-
----
-
-Roadmap
-
-Version Focus Timeline
-V1 Foundation — Documentation, configs, starter kit ✅ April 2026
-V1.1 Security & Stability — Rate limiting, token refresh, error handling ✅ April 2026
-V2 Platform — Web portal, onboarding, analytics Q3 2026
-V3 Enterprise — Team control plane, governance, audit dashboard Q1 2027
 
 ---
+## Roadmap
 
-⭐ Support the Project
+| Version | Focus | Timeline |
+|---------|-------|----------|
+| V1 | Foundation — Documentation, configs, starter kit | ✅ April 2026 |
+| V1.1 | Security & Stability — Rate limiting, token refresh, error handling | ✅ April 2026 |
+| V2 | Platform — Web portal, onboarding, analytics | Q3 2026 |
+| V3 | Enterprise — Team control plane, governance, audit dashboard | Q1 2027 |
 
-If Gebeta Sovereign Code Assistant helps you build with control and privacy, please star this repository and share it with your team.
-
----
-
-Contributing
-
-We welcome contributions! Please see CONTRIBUTING.md for guidelines.
-
-Ways to contribute:
-
-· 🐛 Report bugs
-· 💡 Suggest features
-· 📝 Improve documentation
-· 🔧 Submit code improvements
-· 📢 Share with your network
 
 ---
+## ⭐ Support the Project
 
-License
-
-This project is licensed under the MIT License — see LICENSE for details.
+If Gebeta Sovereign Code Assistant helps you build with control and privacy, please **star this repository** and share it with your team.
 
 ---
+## Contributing
 
-Founder
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-Mohammed B. Kemal
+**Ways to contribute:**
+- 🐛 Report bugs
+- 💡 Suggest features
+- 📝 Improve documentation
+- 🔧 Submit code improvements
+- 📢 Share with your network
+
+---
+## License
+
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+
+---
+## Founder
+
+**Mohammed B. Kemal**  
 Founder & System Architect, Gebeta Universe
 
-· 🌐 Website: https://gebetauae.com
-· 🔗 LinkedIn: https://www.linkedin.com/in/mohammed-b-kemal
-· 🐦 Twitter: @gebetasovereign
+- 🌐 Website: [https://gebetauae.com](https://gebetauae.com)
+- 🔗 LinkedIn: [https://www.linkedin.com/in/mohammed-b-kemal](https://www.linkedin.com/in/mohammed-b-kemal)
+- 🐦 Twitter :https://x.com/mickyMi08136043
+
 
 ---
 
-Acknowledgments
+## Acknowledgments
 
-· Ollama — Local LLM runtime
-· Continue — IDE AI assistant
-· VS Code — Code editor
-· Warp — Modern terminal (optional)
-
+- [Ollama](https://ollama.com) — Local LLM runtime
+- [Continue](https://continue.dev) — IDE AI assistant
+- [VS Code](https://code.visualstudio.com) — Code editor
+- [Warp](https://www.warp.dev) — Modern terminal (optional)
 ---
 
 Built with ❤️ for sovereign engineering.
