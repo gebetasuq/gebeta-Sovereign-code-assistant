@@ -283,5 +283,4 @@ async def test_token_not_expired(client):
 
 
 # ========== Future / TODO ==========
-# TODO (v2.0): Add rate limiting test when implemented
-# Rate limiting rule: "Implement rate limiting for public endpoints"
+# TODO (v2.0): Add plugin sandboxing tests when implemented
