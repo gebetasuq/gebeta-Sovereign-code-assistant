@@ -25,8 +25,6 @@ GACP is a distributed AI operating system designed to scale from a single develo
 | L7 | Sovereign | National‑scale digital identity, emergency, economic systems |
 | L8 | Federation | Cross‑border AI cooperation and trust exchange |
 
-### The 10 Core Agents
-
 | Agent | Responsibility |
 |-------|----------------|
 | **Orchestrator** | Central coordinator – dispatches all tasks |
@@ -35,7 +33,7 @@ GACP is a distributed AI operating system designed to scale from a single develo
 | **Knowledge Agent** | Memory, retrieval, knowledge graph |
 | **Research Agent** | External and internal signal collection |
 | **Builder Agent** | Code, architecture, asset generation |
-| **Operations Agent** | Workflow execution and process automation |
+| **Naylla AI (Operational Agent)** | **Automation. Build.** Problem: Operational tasks require constant manual oversight. Solution: Executes workflows, automations, and system coordination. **Strategic Role: Execution engine.** |
 | **Communication Agent** | Reports, alerts, notifications |
 | **Infrastructure Agent** | Cloud provisioning, deployment, scaling |
 | **Analytics Agent** | KPIs, forecasting, optimisation signals |
