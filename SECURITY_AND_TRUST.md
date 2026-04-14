@@ -127,9 +127,17 @@ Gebeta Sovereign Code Assistant is designed to support environments that require
 
 The repository includes a `.gitleaks.toml` configuration and pre-commit hook example to prevent accidental commits of secrets (API keys, passwords, tokens). See `CONTRIBUTING.md` for setup instructions.
 
-## Rate Limiting (v2.0)
+## Rate Limiting
 
-Rate limiting is **not implemented in v1.0.0**. Public endpoints such as `/auth/login` and `/auth/register` are vulnerable to brute‑force attacks. In v2.0, rate limiting will be added with strict limits (e.g., 10 requests per minute per IP for authentication endpoints). Rate‑limited responses will return HTTP 429 with a `Retry-After` header.
+Authentication endpoints are protected against brute‑force attacks:
+
+- **Login:** 10 requests per minute per IP
+- **Registration:** 5 requests per 5 minutes per IP
+
+Exceeding the limit returns HTTP 429 with a `Retry-After` header. Rate limiting is implemented in both FastAPI and Spring Boot templates:
+
+- FastAPI: `app/middleware/rate_limit.py` + `app/api/auth_improved.py`
+- Spring Boot: `RateLimitConfig.java` + `RateLimitInterceptor.java`
 
 ## v2.0 Plugin Sandboxing Strategy
 
@@ -142,4 +150,3 @@ For now, all plugins are considered trusted. Never load plugins from untrusted s
 ---
 
 **Last updated:** April 2026
-```
