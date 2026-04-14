@@ -1,7 +1,7 @@
 # Gebeta Sovereign Code Assistant
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)](https://github.com/gebetasuq/gebeta-Sovereign-code-assistant-/releases)
+[![Version](https://img.shields.io/badge/version-1.0.1-brightgreen)](https://github.com/gebetasuq/gebeta-Sovereign-code-assistant-/releases)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey)]()
 [![Status](https://img.shields.io/badge/status-production--ready-success)]()
 [![CI](https://github.com/gebetasuq/gebeta-Sovereign-code-assistant-/actions/workflows/test.yml/badge.svg)](https://github.com/gebetasuq/gebeta-Sovereign-code-assistant-/actions/workflows/test.yml)
@@ -171,29 +171,29 @@ What This Does NOT Protect Against
 
 Important: This is a control-first system, not a convenience-first system. Human review is always required.
 
-## Rate Limiting
+Rate Limiting
 
 Authentication endpoints are protected against brute‑force attacks:
 
-- **Login:** 10 requests per minute per IP
-- **Registration:** 5 requests per 5 minutes per IP
+· Login: 10 requests per minute per IP
+· Registration: 5 requests per 5 minutes per IP
 
-Exceeding the limit returns HTTP 429 with a `Retry-After` header. Rate limiting is implemented in both FastAPI and Spring Boot templates.
+Exceeding the limit returns HTTP 429 with a Retry-After header. Rate limiting is implemented in both FastAPI and Spring Boot templates.
+
 ---
 
-## Documentation
+Documentation
 
-| Document | Description |
-|----------|-------------|
-| [QUICKSTART.md](QUICKSTART.md) | Get started in 10 minutes |
-| [SECURITY_AND_TRUST.md](SECURITY_AND_TRUST.md) | Threat model and trust boundaries |
-| [TEAM_DEPLOYMENT.md](TEAM_DEPLOYMENT.md) | Scale to your team |
-| [USE_CASES.md](USE_CASES.md) | Real-world examples |
-| [WHY_GEBETA.md](WHY_GEBETA.md) | Founder vision and philosophy |
-| [ROADMAP.md](ROADMAP.md) | Product roadmap |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
-| [TESTING.md](TESTING.md) | Running tests and coverage reports |
-| [PERFORMANCE_TUNING.md](PERFORMANCE_TUNING.md) | Memory limits, JVM tuning, hardware adjustments |
+Document Description
+QUICKSTART.md Get started in 10 minutes
+SECURITY_AND_TRUST.md Threat model and trust boundaries
+TEAM_DEPLOYMENT.md Scale to your team
+USE_CASES.md Real-world examples
+WHY_GEBETA.md Founder vision and philosophy
+ROADMAP.md Product roadmap
+CONTRIBUTING.md How to contribute
+TESTING.md Running tests and coverage reports
+PERFORMANCE_TUNING.md Memory limits, JVM tuning, hardware adjustments
 
 ---
 
@@ -260,8 +260,9 @@ Positioning: Gebeta promises controlled AI, not perfect AI. That is a stronger p
 Roadmap
 
 Version Focus Timeline
-V1 Foundation — Documentation, configs, starter kit ✅ Now
-V2 Platform — Web portal, onboarding, analytics, rate limiting Q3 2026
+V1 Foundation — Documentation, configs, starter kit ✅ April 2026
+V1.1 Security & Stability — Rate limiting, token refresh, error handling ✅ April 2026
+V2 Platform — Web portal, onboarding, analytics Q3 2026
 V3 Enterprise — Team control plane, governance, audit dashboard Q1 2027
 
 ---
@@ -314,8 +315,7 @@ Acknowledgments
 
 Built with ❤️ for sovereign engineering.
 
-Document version: 1.0.0 | Last updated: April 2026
+Document version: 1.0.1 | Last updated: April 2026
 
 © 2026 Gebeta Universe. All rights reserved.
 
-```
